@@ -15,7 +15,7 @@ formNode.addEventListener('submit', function(event) {
 
     window.localStorage.setItem('answers', json);
 
-    window.location = 'result.html';
+    window.location = '../result.html';
 
-    console.log(answers);
+    console.log(submit);
 });

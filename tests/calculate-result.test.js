@@ -1,24 +1,36 @@
 const test = QUnit.test;
-let scorecard = null;
-QUnit.testStart(function() {
-    scorecard = { sophia: 0, dorothy: 0, rose: 0, blanche: 0 };
-});
 
-function rateScorecard(answers, scorecard) {
-    const sophia = scorecard.sophia;
-    const dorothy = scorecard.dorothy;
-    const rose = scorecard.rose;
-    const blanche = scorecard.blanche;
-    
-    if(sophia > dorothy && sophia > rose && sophia > blanche) {
-        return "Sophia";
-    }
-}
+import calculateResult from '../src/result/calculation/calculate-result.js';
 
-test('return "Sophia" if sophia has highest total', function(assert) {
-    const scorecard = { sophia: 1, dorothy: 0, rose: 0, blanche: 0 };
-    const result = rateScorecard(scorecard);
-    const expected = "Sophia";
+test('return "Sophia" if sophia has the highest score', function(assert) {
+    const answers = { season: 'winter', description: 'old', friday: 'date' };
+    const result = calculateResult(answers);
+    const expected = 'Sophia';
 
     assert.equal(result, expected);
 });
+
+test('return "Dorothy" if dorothy has the highest score', function(assert) {
+    const answers = { season: 'autumn', description: 'masculine', friday: 'date' };
+    const result = calculateResult(answers);
+    const expected = 'Dorothy';
+
+    assert.equal(result, expected);
+});
+
+test('return "Rose" if rose has the highest score', function(assert) {
+    const answers = { season: 'winter', description: 'dumb', friday: 'lanai' };
+    const result = calculateResult(answers);
+    const expected = 'Rose';
+
+    assert.equal(result, expected);
+});
+
+test('return "Blanche" if blanche has the highest score', function(assert) {
+    const answers = { season: 'summer', description: 'old', friday: 'date' };
+    const result = calculateResult(answers);
+    const expected = 'Blanche';
+
+    assert.equal(result, expected);
+});
+
